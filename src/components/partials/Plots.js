@@ -7,14 +7,16 @@ const CommonLayout = ({ children }) => {
   return (
     <Col lg={6} className="mb-3">
       <Card>
-        <Card.Body>{children}</Card.Body>
+        <Card.Body>
+          <Suspense fallback={<>Loading...</>}>{children}</Suspense>
+        </Card.Body>
       </Card>
     </Col>
   );
 };
 
 const Plots = (props) => {
-  if (!props.data) {
+  if (!props.selectedState) {
     return (
       <Card className="mt-4">
         <Card.Body>
@@ -31,14 +33,10 @@ const Plots = (props) => {
       <section className="mt-4">
         <Row className="justify-content-between">
           <CommonLayout>
-            <Suspense fallback={<>Loading...</>}>
-              <PieChart key={`pie-${props.selectedState}`} {...props} />
-            </Suspense>
+            <PieChart key={`pie-${props.selectedState}`} {...props} />
           </CommonLayout>
           <CommonLayout>
-            <Suspense fallback={<>Loading...</>}>
-              <BarChart key={`bar-${props.selectedState}`} {...props} />
-            </Suspense>
+            <BarChart key={`bar-${props.selectedState}`} {...props} />
           </CommonLayout>
         </Row>
       </section>
