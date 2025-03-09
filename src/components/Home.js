@@ -7,10 +7,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCovidData } from "../reducers/CovidSlice";
 import Map from "./partials/Map";
 
+const Error = ({ status = "", children }) => {
+  const failedStatus = status == "failed";
+  return (
+    <div
+      style={{
+        height: "100vh",
+      }}
+      className="d-flex justify-content-center align-items-center "
+    >
+      <p className={failedStatus && "text-danger"}>{children}</p>
+    </div>
+  );
+};
+
 const Home = () => {
   const dispatch = useDispatch();
   // get all needed data from store
-  const { data, status, dataWithCoordinates } = useSelector(
+  const { data, status, dataWithCoordinates, error } = useSelector(
     (state) => state.covid
   );
 
@@ -22,11 +36,11 @@ const Home = () => {
   }, [dispatch, status]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <Error>Loading .....</Error>;
   }
 
   if (status === "failed") {
-    return <div>Oops....Something went wrong!</div>;
+    return <Error status="failed">{error}</Error>;
   }
 
   if (!data) {
