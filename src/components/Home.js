@@ -16,7 +16,7 @@ const Error = ({ status = "", children }) => {
       }}
       className="d-flex justify-content-center align-items-center "
     >
-      <p className={failedStatus && "text-danger"}>{children}</p>
+      <p className={failedStatus ? "text-danger" : ""}>{children}</p>
     </div>
   );
 };
