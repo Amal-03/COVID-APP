@@ -37,7 +37,7 @@ const PlotsAndSelect = () => {
           <Col sm={12} lg={3} className="offset-lg-9">
             <Form.Select onChange={handleChange}>{options}</Form.Select>
           </Col>
-          <Col lg={12} className="mb-5">
+          <Col lg={12}>
             <Plots data={selectedStateWiseData} selectedState={selectedState} />
           </Col>
         </Row>
