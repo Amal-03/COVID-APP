@@ -9,35 +9,51 @@ const BarChart = ({ data, selectedState }) => {
     return null;
   }
 
-  var chartData = [
-    {
-      x: Object.keys(plotData),
-      y: Object.values(plotData),
-      type: "bar",
-    },
+  const xLabels = ["C.C Indian", "C.C Foreign", "Discharged", "Deaths", "T.C"];
+  // Full labels for legends
+  const fullLabels = [
+    "Confirmed Cases Indian",
+    "Confirmed Cases Foreign",
+    "Discharged",
+    "Deaths",
+    "Total Confirmed",
   ];
 
+  const values = Object.values(plotData);
+
+  const chartData = xLabels.map((label, index) => ({
+    x: [label],
+    y: [values[index]],
+    type: "bar",
+    name: fullLabels[index],
+  }));
+
   const layout = {
+    barcornerradius: 15,
     title: {
       text: `Cases at ${selectedState}`,
     },
-    barcornerradius: 15,
     xaxis: {
       title: {
         text: "Cases",
       },
-      showticklabels: false,
+      tickangle: -45,
+      automargin: true,
     },
-
     yaxis: {
       title: {
         text: "Count",
       },
     },
-  };
-
-  const config = {
-    responsive: true,
+    bargap: 0.2,
+    showlegend: true,
+    legend: {
+      orientation: "h",
+      y: -0.5,
+    },
+    margin: {
+      b: 180,
+    },
   };
 
   return (
@@ -45,7 +61,6 @@ const BarChart = ({ data, selectedState }) => {
       data={chartData}
       layout={layout}
       style={{ width: "100%", height: "100%" }}
-      config={config}
     />
   );
 };

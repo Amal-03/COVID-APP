@@ -30,16 +30,11 @@ const PieChart = ({ data, selectedState }) => {
     },
   };
 
-  const config = {
-    responsive: true,
-  };
-
   return (
     <Plot
       data={chartData}
       layout={layout}
       style={{ width: "100%", height: "100%" }}
-      config={config}
     />
   );
 };
