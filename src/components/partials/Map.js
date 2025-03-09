@@ -26,7 +26,7 @@ const Map = ({ data = [] }) => {
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {statesData.map((state) => (
-          <Marker key={state.name} position={[state.lat, state.lng]}>
+          <Marker key={state.loc} position={[state.lat, state.lng]}>
             <Popup>
               <h4 className="mt-3">{state.loc}</h4>
               <Card className="cases mb-2">

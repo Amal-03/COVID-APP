@@ -11,12 +11,12 @@
   color: white;
 }
 
-.cases-section {
+.custom-container {
   padding-top: 150px;
 }
 
 @media screen and (max-width: 345px) {
-  .cases-section {
+  .custom-container {
     padding-top: 190px;
   }
 }

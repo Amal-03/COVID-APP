@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <Container>
+      <Container className="custom-container">
         {/* displays overall cases in india */}
         <Cases summary={summary} />
         {/* contains plots & select option */}
